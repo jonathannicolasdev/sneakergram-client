@@ -8,6 +8,10 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const Logo = styled.h1`
+  font-family: Comfortaa;
+`;
+
 export default function RegisterLogin() {
   return (
     <div>
@@ -16,7 +20,7 @@ export default function RegisterLogin() {
           <img src="/assets/featured-image.jpg" alt="featured" />
         </div>
         <div>
-          <h1>Sneakergram</h1>
+          <Logo>Sneakergram</Logo>
           <form>
             <input type="text" placeholder="Username" />
             <input type="email" placeholder="Email" />
