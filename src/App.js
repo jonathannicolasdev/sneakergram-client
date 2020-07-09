@@ -1,25 +1,32 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
-import Home from "./pages/Home";
-import RegisterLogin from "./pages/RegisterLogin";
+import store from './store'
+
+import Home from './pages/Home'
+import RegisterLogin from './pages/RegisterLogin'
 
 export default function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false)
 
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/">{authenticated ? <Home /> : <RegisterLogin />}</Route>
-        </Switch>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Switch>
+            <Route path='/'>
+              {authenticated ? <Home /> : <RegisterLogin />}
+            </Route>
+          </Switch>
 
-        <footer>
-          <button onClick={() => setAuthenticated(!authenticated)}>
-            Change Auth
-          </button>
-        </footer>
-      </div>
-    </Router>
-  );
+          <footer>
+            <button onClick={() => setAuthenticated(!authenticated)}>
+              Change Auth
+            </button>
+          </footer>
+        </div>
+      </Router>
+    </Provider>
+  )
 }
