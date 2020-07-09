@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 
@@ -55,6 +55,17 @@ const Section = styled.div`
 export default function RegisterLogin() {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = (data) => console.log(data);
+  const [authState, setAuthState] = useState("register");
+
+  const switchRegisterLogin = (event) => {
+    event.preventDefault();
+    if (authState === "register") {
+      setAuthState("login");
+    } else {
+      setAuthState("register");
+    }
+    console.log(authState);
+  };
 
   return (
     <div>
@@ -66,19 +77,19 @@ export default function RegisterLogin() {
           <Logo>Sneakergram</Logo>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Input
-              name="Username"
+              name="username"
               type="text"
               placeholder="Username"
               ref={register}
             />
             <Input
-              name="Email"
+              name="email"
               type="email"
               placeholder="Email"
               ref={register}
             />
             <Input
-              name="Password"
+              name="password"
               type="password"
               placeholder="Password"
               ref={register}
@@ -87,7 +98,10 @@ export default function RegisterLogin() {
           </Form>
           <Help>
             <p>
-              Have an account? <a href="/login">Login</a>
+              Have an account?{" "}
+              <a onClick={switchRegisterLogin} href="/login">
+                Login
+              </a>
             </p>
           </Help>
         </Section>
