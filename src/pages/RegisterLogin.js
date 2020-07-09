@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useForm } from "react-hook-form";
 
 const Container = styled.div`
   display: flex;
@@ -52,6 +53,9 @@ const Section = styled.div`
 `;
 
 export default function RegisterLogin() {
+  const { register, handleSubmit, watch, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div>
       <Container>
@@ -60,10 +64,25 @@ export default function RegisterLogin() {
         </div>
         <Section>
           <Logo>Sneakergram</Logo>
-          <Form>
-            <Input type="text" placeholder="Username" />
-            <Input type="email" placeholder="Email" />
-            <Input type="password" placeholder="Password" />
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              name="Username"
+              type="text"
+              placeholder="Username"
+              ref={register}
+            />
+            <Input
+              name="Email"
+              type="email"
+              placeholder="Email"
+              ref={register}
+            />
+            <Input
+              name="Password"
+              type="password"
+              placeholder="Password"
+              ref={register}
+            />
             <SubmitInput type="submit" value="Register" />
           </Form>
           <Help>
