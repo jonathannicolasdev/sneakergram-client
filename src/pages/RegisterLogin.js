@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import styled from "@emotion/styled";
 import RegisterForm from "../components/RegisterForm";
+import LoginForm from "../components/LoginForm";
 
 const Container = styled.div`
   display: flex;
@@ -62,6 +63,7 @@ export default function RegisterLogin() {
             </Fragment>
           ) : (
             <Fragment>
+              <LoginForm></LoginForm>
               <Help>
                 Create an account?
                 <a onClick={switchAuth} href="/register">
