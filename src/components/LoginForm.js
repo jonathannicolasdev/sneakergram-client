@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import styled from '@emotion/styled'
+import { connect } from 'react-redux'
 
 const Form = styled.form`
   display: flex;
@@ -26,9 +27,12 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `
 
-const LoginForm = () => {
+const LoginForm = ({ authenticated, setAuthenticatedTrue }) => {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    console.log(data)
+    setAuthenticatedTrue()
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -44,4 +48,14 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+const mapStateToProps = (state) => ({
+  authenticated: state.authenticated,
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setAuthenticatedTrue: () => dispatch({ type: 'SET_AUTHENTICATED_TRUE' }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
