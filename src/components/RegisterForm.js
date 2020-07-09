@@ -28,7 +28,9 @@ const SubmitInput = styled.input`
 
 const RegisterForm = () => {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    console.log(data)
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

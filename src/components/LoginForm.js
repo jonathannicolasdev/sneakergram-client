@@ -27,11 +27,11 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `
 
-const LoginForm = ({ authenticated, setAuthenticatedTrue }) => {
+const LoginForm = ({ authenticated, login }) => {
   const { register, handleSubmit } = useForm()
   const onSubmit = (data) => {
     console.log(data)
-    setAuthenticatedTrue()
+    login()
   }
 
   return (
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setAuthenticatedTrue: () => dispatch({ type: 'SET_AUTHENTICATED_TRUE' }),
+    login: () => dispatch({ type: 'SET_AUTHENTICATED_TRUE' }),
   }
 }
 
