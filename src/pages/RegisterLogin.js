@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import styled from "@emotion/styled";
 import RegisterForm from "../components/RegisterForm";
 
@@ -13,12 +13,13 @@ const Logo = styled.h1`
   font-family: Comfortaa;
 `;
 
-const Help = styled.div`
+const Help = styled.p`
   display: flex;
   justify-content: center;
   a {
     color: #66bd22;
     text-decoration: none;
+    margin-left: 5px;
   }
 `;
 
@@ -31,7 +32,7 @@ const Section = styled.div`
 export default function RegisterLogin() {
   const [authState, setAuthState] = useState("register");
 
-  const switchRegisterLogin = (event) => {
+  const switchAuth = (event) => {
     event.preventDefault();
     if (authState === "register") {
       setAuthState("login");
@@ -49,16 +50,26 @@ export default function RegisterLogin() {
         </div>
         <Section>
           <Logo>Sneakergram</Logo>
-          <RegisterForm></RegisterForm>
-
-          <Help>
-            <p>
-              Have an account?{" "}
-              <a onClick={switchRegisterLogin} href="/login">
-                Login
-              </a>
-            </p>
-          </Help>
+          {authState === "register" ? (
+            <Fragment>
+              <RegisterForm></RegisterForm>
+              <Help>
+                Have an account?
+                <a onClick={switchAuth} href="/login">
+                  Login
+                </a>
+              </Help>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Help>
+                Create an account?
+                <a onClick={switchAuth} href="/register">
+                  Register
+                </a>
+              </Help>
+            </Fragment>
+          )}
         </Section>
       </Container>
     </div>
