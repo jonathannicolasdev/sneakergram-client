@@ -1,6 +1,7 @@
 import React from "react";
 import sneakers from "../data/sneakers.json";
 import styled from "@emotion/styled";
+import Header from "../components/Header";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -58,46 +59,49 @@ const SneakerInfoValues = styled.ul`
 
 export default function Home() {
   return (
-    <HomeContainer>
-      <SneakerCards>
-        {sneakers.map((sneaker, index) => {
-          return (
-            <SneakerCard>
-              <UserInfo>
-                <UserAvatar
-                  src={sneaker.createdBy.avatarUrl}
-                  alt={sneaker.createdBy.username}
-                />
-                <span>{sneaker.createdBy.username}</span>
-              </UserInfo>
-              <div>
-                <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
-              </div>
-              <div>
-                <h2>{sneaker.name}</h2>
-                <SneakerInfo>
-                  <SneakerInfoKeys>
-                    <li>style</li>
-                    <li>colorway</li>
-                    <li>retail price</li>
-                    <li>release date</li>
-                    <li>size</li>
-                    <li>location</li>
-                  </SneakerInfoKeys>
-                  <SneakerInfoValues>
-                    <li>{sneaker.style}</li>
-                    <li>{sneaker.colorway}</li>
-                    <li>{sneaker.retailPrice}</li>
-                    <li>{sneaker.releaseDate ? sneaker.releaseDate : "-"}</li>
-                    <li>{sneaker.size}</li>
-                    <li>{sneaker.location}</li>
-                  </SneakerInfoValues>
-                </SneakerInfo>
-              </div>
-            </SneakerCard>
-          );
-        })}
-      </SneakerCards>
-    </HomeContainer>
+    <div>
+      <Header></Header>
+      <HomeContainer>
+        <SneakerCards>
+          {sneakers.map((sneaker, index) => {
+            return (
+              <SneakerCard>
+                <UserInfo>
+                  <UserAvatar
+                    src={sneaker.createdBy.avatarUrl}
+                    alt={sneaker.createdBy.username}
+                  />
+                  <span>{sneaker.createdBy.username}</span>
+                </UserInfo>
+                <div>
+                  <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
+                </div>
+                <div>
+                  <h2>{sneaker.name}</h2>
+                  <SneakerInfo>
+                    <SneakerInfoKeys>
+                      <li>style</li>
+                      <li>colorway</li>
+                      <li>retail price</li>
+                      <li>release date</li>
+                      <li>size</li>
+                      <li>location</li>
+                    </SneakerInfoKeys>
+                    <SneakerInfoValues>
+                      <li>{sneaker.style}</li>
+                      <li>{sneaker.colorway}</li>
+                      <li>{sneaker.retailPrice}</li>
+                      <li>{sneaker.releaseDate ? sneaker.releaseDate : "-"}</li>
+                      <li>{sneaker.size}</li>
+                      <li>{sneaker.location}</li>
+                    </SneakerInfoValues>
+                  </SneakerInfo>
+                </div>
+              </SneakerCard>
+            );
+          })}
+        </SneakerCards>
+      </HomeContainer>
+    </div>
   );
 }
