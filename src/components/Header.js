@@ -6,6 +6,9 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: center;
   padding: 10px 0px;
+  border-bottom: 1px solid #c4c4c4;
+  margin-bottom: 10px;
+  background-color: #ffff;
 `;
 
 const Logo = styled.div`
