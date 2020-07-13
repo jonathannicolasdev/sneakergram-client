@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "Jordan 1 Retro High Hot Punch (W)",
     "imageUrl": "/assets/sneakers/air-jordan-1-retro-high-hot-punch-w.jpg",
     "style": "AQ9131-600",
@@ -14,6 +15,7 @@
     }
   },
   {
+    "id": 2,
     "name": "Jordan 1 Low Reverse Bred (GS)",
     "imageUrl": "/assets/sneakers/air-jordan-1-low-reverse-bred-gs.jpg",
     "style": "553560-606",
@@ -28,6 +30,82 @@
     }
   },
   {
+    "id": 3,
+    "name": "Jordan 1 Mid SE Multi-Color (W)",
+    "imageUrl": "/assets/sneakers/air-jordan-1-mid-se-multi-color-w.jpg",
+    "style": "CW1140-100",
+    "colorway": "WHITE/BLACK-LIGHTBULB-TEAM ORANGE",
+    "retailPrice": "$125",
+    "releaseDate": "April 9th, 2020",
+    "size": "8.5 US",
+    "location": "Jakarta, Indonesia",
+    "createdBy": {
+      "username": "calmdesrejects",
+      "avatarUrl": "/assets/avatars/jonathan.jpg"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Jordan 1 Mid SE Multi-Color (W)",
+    "imageUrl": "/assets/sneakers/air-jordan-1-mid-se-multi-color-w.jpg",
+    "style": "CW1140-100",
+    "colorway": "WHITE/BLACK-LIGHTBULB-TEAM ORANGE",
+    "retailPrice": "$125",
+    "releaseDate": "April 9th, 2020",
+    "size": "8.5 US",
+    "location": "Jakarta, Indonesia",
+    "createdBy": {
+      "username": "calmdesrejects",
+      "avatarUrl": "/assets/avatars/jonathan.jpg"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Jordan 1 Mid SE Multi-Color (W)",
+    "imageUrl": "/assets/sneakers/air-jordan-1-mid-se-multi-color-w.jpg",
+    "style": "CW1140-100",
+    "colorway": "WHITE/BLACK-LIGHTBULB-TEAM ORANGE",
+    "retailPrice": "$125",
+    "releaseDate": "April 9th, 2020",
+    "size": "8.5 US",
+    "location": "Jakarta, Indonesia",
+    "createdBy": {
+      "username": "calmdesrejects",
+      "avatarUrl": "/assets/avatars/jonathan.jpg"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Jordan 1 Mid SE Multi-Color (W)",
+    "imageUrl": "/assets/sneakers/air-jordan-1-mid-se-multi-color-w.jpg",
+    "style": "CW1140-100",
+    "colorway": "WHITE/BLACK-LIGHTBULB-TEAM ORANGE",
+    "retailPrice": "$125",
+    "releaseDate": "April 9th, 2020",
+    "size": "8.5 US",
+    "location": "Jakarta, Indonesia",
+    "createdBy": {
+      "username": "calmdesrejects",
+      "avatarUrl": "/assets/avatars/jonathan.jpg"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Jordan 1 Mid SE Multi-Color (W)",
+    "imageUrl": "/assets/sneakers/air-jordan-1-mid-se-multi-color-w.jpg",
+    "style": "CW1140-100",
+    "colorway": "WHITE/BLACK-LIGHTBULB-TEAM ORANGE",
+    "retailPrice": "$125",
+    "releaseDate": "April 9th, 2020",
+    "size": "8.5 US",
+    "location": "Jakarta, Indonesia",
+    "createdBy": {
+      "username": "calmdesrejects",
+      "avatarUrl": "/assets/avatars/jonathan.jpg"
+    }
+  },
+  {
+    "id": 8,
     "name": "Jordan 1 Mid SE Multi-Color (W)",
     "imageUrl": "/assets/sneakers/air-jordan-1-mid-se-multi-color-w.jpg",
     "style": "CW1140-100",

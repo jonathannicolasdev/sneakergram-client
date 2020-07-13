@@ -1,0 +1,23 @@
+[
+  {
+    "username": "calmdesrejects",
+    "name": "jonathan",
+    "sneakerCount": 8,
+    "bio": "I like to collect sneakers",
+    "sneakers": [1, 2, 3, 4]
+  },
+  {
+    "username": "nickolakoshkosh",
+    "name": "nicola",
+    "sneakerCount": 2,
+    "bio": "I like to collect jordans",
+    "sneakers": [5, 6]
+  },
+  {
+    "username": "bujangan",
+    "name": "eri",
+    "sneakerCount": 1,
+    "bio": "I like to collect yeezess",
+    "sneakers": [7]
+  }
+]
