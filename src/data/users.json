@@ -2,12 +2,14 @@
   {
     "username": "calmdesrejects",
     "name": "jonathan",
+    "image": "/assets/avatars/jonathan.jpg",
     "sneakerCount": 8,
     "bio": "I like to collect sneakers",
     "sneakers": [1, 2, 3, 4]
   },
   {
     "username": "nickolakoshkosh",
+    "image": "/assets/avatars/nickolakoshkosh.jpg",
     "name": "nicola",
     "sneakerCount": 2,
     "bio": "I like to collect jordans",
@@ -16,6 +18,7 @@
   {
     "username": "bujangan",
     "name": "eri",
+    "image": "/assets/avatars/bujangan.jpg",
     "sneakerCount": 1,
     "bio": "I like to collect yeezess",
     "sneakers": [7]
