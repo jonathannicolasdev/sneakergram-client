@@ -2,6 +2,7 @@ import React from "react";
 import sneakers from "../data/sneakers.json";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
+import Presentation from "../components/Presentation";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -61,6 +62,7 @@ export default function Home() {
   return (
     <div>
       <Header></Header>
+      <Presentation></Presentation>
       <HomeContainer>
         <SneakerCards>
           {sneakers.map((sneaker, index) => {
