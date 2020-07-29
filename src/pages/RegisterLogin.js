@@ -53,7 +53,7 @@ export default function RegisterLogin() {
           <Logo>Sneakergram</Logo>
           {authState === "register" ? (
             <Fragment>
-              <RegisterForm></RegisterForm>
+              <RegisterForm setAuthState={setAuthState}></RegisterForm>
               <Help>
                 Have an account?
                 <a onClick={switchAuth} href="/login">

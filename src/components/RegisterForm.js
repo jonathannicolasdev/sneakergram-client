@@ -27,7 +27,7 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `;
 
-const RegisterForm = () => {
+const RegisterForm = ({ setAuthState }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     console.log(data);
@@ -37,6 +37,7 @@ const RegisterForm = () => {
         data
       );
       console.log(response);
+      setAuthState("login");
     } catch (error) {
       console.log(error);
     }
