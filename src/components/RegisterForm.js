@@ -31,7 +31,15 @@ const RegisterForm = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     console.log(data);
-    await axios.get(process.env.REACT_APP_API_URL);
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/register`,
+        data
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
