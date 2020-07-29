@@ -67,7 +67,7 @@ export default function Home() {
         <SneakerCards>
           {sneakers.map((sneaker, index) => {
             return (
-              <SneakerCard>
+              <SneakerCard key={index}>
                 <UserInfo>
                   <UserAvatar
                     src={sneaker.createdBy.avatarUrl}

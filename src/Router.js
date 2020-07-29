@@ -16,11 +16,6 @@ const Router = ({ authenticated, login, logout }) => {
           </Route>
           <Route path="/">{authenticated ? <Home /> : <RegisterLogin />}</Route>
         </Switch>
-
-        <footer>
-          <button onClick={() => login()}>Login</button>
-          <button onClick={() => logout()}>Logout</button>
-        </footer>
       </div>
     </BrowserRouter>
   );
