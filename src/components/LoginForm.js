@@ -29,7 +29,7 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `;
 
-const LoginForm = ({ authenticated, login }) => {
+const LoginForm = ({ login }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     try {
