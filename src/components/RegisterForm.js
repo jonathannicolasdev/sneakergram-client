@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import axios from "axios";
@@ -30,13 +31,8 @@ const SubmitInput = styled.input`
 const RegisterForm = ({ setAuthState }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users/register`,
-        data
-      );
-      console.log(response);
+      await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, data);
       setAuthState("login");
     } catch (error) {
       console.log(error);
@@ -61,6 +57,10 @@ const RegisterForm = ({ setAuthState }) => {
       <SubmitInput type="submit" value="Register" />
     </Form>
   );
+};
+
+RegisterForm.propTypes = {
+  setAuthState: PropTypes.func,
 };
 
 export default RegisterForm;

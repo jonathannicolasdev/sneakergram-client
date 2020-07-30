@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
@@ -31,13 +32,8 @@ const SubmitInput = styled.input`
 const LoginForm = ({ authenticated, login }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users/login`,
-        data
-      );
-      console.log(response);
+      await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, data);
       login();
     } catch (error) {
       console.log(error);
@@ -66,6 +62,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     login: () => dispatch({ type: "SET_AUTHENTICATED_TRUE" }),
   };
+};
+
+LoginForm.propTypes = {
+  authenticated: PropTypes.bool,
+  login: PropTypes.func,
+  logout: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
