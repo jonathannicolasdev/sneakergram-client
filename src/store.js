@@ -1,4 +1,4 @@
-import { createStore } from 'redux'
+import { createStore } from "redux";
 
 function reducer(
   initialState = {
@@ -7,22 +7,22 @@ function reducer(
   action
 ) {
   switch (action.type) {
-    case 'SET_AUTHENTICATED_TRUE':
+    case "SET_AUTHENTICATED_TRUE":
       return {
         authenticated: true,
-      }
-    case 'SET_AUTHENTICATED_FALSE':
+      };
+    case "SET_AUTHENTICATED_FALSE":
       return {
         authenticated: false,
-      }
+      };
     default:
-      return initialState
+      return initialState;
   }
 }
 
 const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+);
 
-export default store
+export default store;

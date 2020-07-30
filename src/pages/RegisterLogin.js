@@ -35,12 +35,12 @@ export default function RegisterLogin() {
 
   const switchAuth = (event) => {
     event.preventDefault();
+
     if (authState === "register") {
       setAuthState("login");
     } else {
       setAuthState("register");
     }
-    console.log(authState);
   };
 
   return (
