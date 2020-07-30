@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -6,7 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RegisterLogin from "./pages/RegisterLogin";
 
-const Router = ({ authenticated, login, logout }) => {
+const Router = ({ authenticated }) => {
   return (
     <BrowserRouter>
       <div>
@@ -25,11 +26,8 @@ const mapStateToProps = (state) => ({
   authenticated: state.authenticated,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: () => dispatch({ type: "SET_AUTHENTICATED_TRUE" }),
-    logout: () => dispatch({ type: "SET_AUTHENTICATED_FALSE" }),
-  };
+Router.propTypes = {
+  authenticated: PropTypes.bool,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Router);
+export default connect(mapStateToProps)(Router);
