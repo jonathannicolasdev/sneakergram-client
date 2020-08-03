@@ -1,42 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 
-function Upload() {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = async (data) => {
-    try {
-      console.log(data);
-      let bodyFormData = new FormData();
-      bodyFormData.append("sneaker", data.sneaker[0]);
+const Upload = () => {
+  const [state, setState] = useState({
+    file: null,
+  });
 
-      const response = await axios.post(
+  const onFormSubmit = async (event) => {
+    event.preventDefault();
+    await fileUpload(state.file);
+  };
+
+  const onChange = (event) => {
+    setState({
+      file: event.target.files[0],
+    });
+  };
+
+  const fileUpload = (file) => {
+    if (localStorage.getItem("token")) {
+      const bodyFormData = new FormData();
+
+      bodyFormData.append("sneaker", file);
+
+      return axios.post(
         `${process.env.REACT_APP_API_URL}/sneakers`,
-        { data: bodyFormData },
+        bodyFormData,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data",
+            "content-type": "multipart/form-data",
           },
         }
       );
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+    } else {
+      console.error("Token is not available");
     }
   };
-  // console.log(watch("sneaker")); // watch input value by passing the name of it
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input name="sneaker" ref={register} type="file" />
-          <input type="submit" value="Upload Sneaker" />
-        </div>
-      </form>
-    </div>
+    <form onSubmit={onFormSubmit}>
+      <h1>File Upload</h1>
+      <input type="file" onChange={onChange} />
+      <button type="submit">Upload</button>
+    </form>
   );
-}
+};
 
 export default Upload;

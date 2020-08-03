@@ -37,7 +37,6 @@ const LoginForm = ({ login }) => {
         `${process.env.REACT_APP_API_URL}/users/login`,
         data
       );
-      console.log(response.data.token);
       localStorage.setItem("token", response.data.token);
       login();
     } catch (error) {
