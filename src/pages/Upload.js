@@ -42,9 +42,49 @@ const Upload = () => {
     <form onSubmit={onFormSubmit}>
       <h1>File Upload</h1>
       <input type="file" onChange={onChange} />
-      <button type="submit">Upload</button>
+      <div>
+        <label>Name</label>
+        <input
+          name="name"
+          type="text"
+          placeholder="Jordan 1 Retro High Hot Punch (W)"
+        />
+      </div>
+      <div>
+        <label>Style</label>
+        <input name="style" type="text" placeholder="AQ9131-600" />
+      </div>
+      <div>
+        <label>Colorway</label>
+        <input name="colorway" type="text" placeholder="HOT PUNCH/VOLT-BLACK" />
+      </div>
+      <div>
+        <label>Retail Price (USD)</label>
+        <input name="retail-price" type="number" placeholder="145" />
+      </div>
+      <div>
+        <label>Release Date</label>
+        <input name="release-date" type="date" />
+      </div>
+      <div>
+        <label>Size</label>
+        <input name="size" type="text" placeholder="9.5 US" />
+      </div>
+      <div>
+        <label>Location</label>
+        <input name="location" type="text" placeholder="Jakarta, Indonesia" />
+      </div>
+      <button type="submit">Post Sneaker</button>
     </form>
   );
 };
 
 export default Upload;
+
+//  name: "dummy",
+//         style: "dummy",
+//         colorway: "dummy",
+//         retailPrice: 100,
+//         releaseDate: "2020-01-01",
+//         size: "10",
+//         location: "Canada",
