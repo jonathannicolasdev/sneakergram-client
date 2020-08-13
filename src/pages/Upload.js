@@ -57,9 +57,7 @@ const Upload = () => {
 
   const onFormSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(state);
-    // await fileUpload(state.file);
+    await submitSneaker(state.file);
   };
 
   const onFileChange = (event) => {
@@ -83,22 +81,34 @@ const Upload = () => {
     });
   };
 
-  const fileUpload = (file) => {
+  const submitSneaker = (file) => {
     if (localStorage.getItem("token")) {
-      const bodyFormData = new FormData();
+      try {
+        const body = new FormData();
 
-      bodyFormData.append("sneaker", file);
+        body.append("name", state.name);
+        body.append("style", state.style);
+        body.append("colorway", state.colorway);
+        body.append("retailPrice", state.retailPrice);
+        body.append("releaseDate", state.releaseDate);
+        body.append("size", state.size);
+        body.append("location", state.location);
+        body.append("sneaker", file);
 
-      return axios.post(
-        `${process.env.REACT_APP_API_URL}/sneakers`,
-        bodyFormData,
-        {
+        // Display the key/value pairs
+        // for (let pair of body.entries()) {
+        //   console.log(pair[0] + ", " + pair[1]);
+        // }
+
+        return axios.post(`${process.env.REACT_APP_API_URL}/sneakers`, body, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
             "content-type": "multipart/form-data",
           },
-        }
-      );
+        });
+      } catch (error) {
+        console.error("Error when submitting sneaker", error);
+      }
     } else {
       console.error("Token is not available");
     }
