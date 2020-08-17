@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -35,33 +37,51 @@ const ProfileImage = styled.img`
   margin: 0px 8px;
 `;
 
-const UploadButton = styled.button`
+const Button = styled.button`
   text-transform: capitalize;
   background: #66bd22;
   border-radius: 100px;
   padding: 0px 20px;
   color: #ffff;
   margin: 0px 5px;
-  width: 105px;
   height: 40px;
   font-size: 16px;
   border: none;
-  margin: 0px 8px;
 `;
 
-const Header = () => {
+const Header = ({ authenticated, username, logout }) => {
   return (
     <HeaderStyled>
       <Logo>sneakergram</Logo>
       <Navigation>
         <HomeIcon src="/assets/icons/home.svg" alt="home" />
-        <ProfileImage src="/assets/avatars/jonathan.jpg" alt="jonathan" />
-        <Link to="/upload">
-          <UploadButton>upload</UploadButton>
+        <Link to={username}>
+          <ProfileImage src="/assets/avatars/jonathan.jpg" alt={username} />
         </Link>
+        <Link to="/upload">
+          <Button>upload</Button>
+        </Link>
+        {authenticated && <Button onClick={logout}>logout</Button>}
       </Navigation>
     </HeaderStyled>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  authenticated: state.authenticated,
+  username: state.decodedToken.username,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch({ type: "SET_AUTHENTICATED_FALSE" }),
+  };
+};
+
+Header.propTypes = {
+  authenticated: PropTypes.bool,
+  username: PropTypes.string,
+  logout: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

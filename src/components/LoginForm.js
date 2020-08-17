@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import axios from "axios";
 
+import { decodeToken } from "../utils/jsonwebtoken";
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -37,8 +39,10 @@ const LoginForm = ({ login }) => {
         `${process.env.REACT_APP_API_URL}/users/login`,
         data
       );
-      localStorage.setItem("token", response.data.token);
-      login();
+
+      const token = response.data.token;
+      const decodedToken = decodeToken(token);
+      login({ token, decodedToken });
     } catch (error) {
       console.log(error);
     }
@@ -64,14 +68,17 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: () => dispatch({ type: "SET_AUTHENTICATED_TRUE" }),
+    login: (data) =>
+      dispatch({
+        type: "SET_AUTHENTICATED_TRUE",
+        payload: data,
+      }),
   };
 };
 
 LoginForm.propTypes = {
   authenticated: PropTypes.bool,
   login: PropTypes.func,
-  logout: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
