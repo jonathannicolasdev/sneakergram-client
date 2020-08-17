@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled from "@emotion/styled";
 
@@ -55,6 +56,8 @@ const Upload = () => {
     file: null,
   });
 
+  const history = useHistory();
+
   const onFormSubmit = async (event) => {
     event.preventDefault();
     await submitSneaker(state.file);
@@ -81,7 +84,7 @@ const Upload = () => {
     });
   };
 
-  const submitSneaker = (file) => {
+  const submitSneaker = async (file) => {
     if (localStorage.getItem("token")) {
       try {
         const body = new FormData();
@@ -100,12 +103,18 @@ const Upload = () => {
         //   console.log(pair[0] + ", " + pair[1]);
         // }
 
-        return axios.post(`${process.env.REACT_APP_API_URL}/sneakers`, body, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "content-type": "multipart/form-data",
-          },
-        });
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/sneakers`,
+          body,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+              "content-type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(response.data);
+        history.push("/");
       } catch (error) {
         console.error("Error when submitting sneaker", error);
       }
