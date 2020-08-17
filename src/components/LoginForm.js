@@ -33,7 +33,11 @@ const LoginForm = ({ login }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, data);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/login`,
+        data
+      );
+      localStorage.setItem("token", response.data.token);
       login();
     } catch (error) {
       console.log(error);

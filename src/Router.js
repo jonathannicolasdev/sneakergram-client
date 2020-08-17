@@ -6,16 +6,19 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import RegisterLogin from "./pages/RegisterLogin";
+import Upload from "./pages/Upload";
 
 const Router = ({ authenticated }) => {
   return (
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/home">
-            <Home />
+          <Route exact path="/">
+            {authenticated ? <Home /> : <RegisterLogin />}
           </Route>
-          <Route path="/">{authenticated ? <Home /> : <RegisterLogin />}</Route>
+          <Route path="/upload">
+            <Upload />
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>

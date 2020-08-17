@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -55,7 +56,9 @@ const Header = () => {
       <Navigation>
         <HomeIcon src="/assets/icons/home.svg" alt="home" />
         <ProfileImage src="/assets/avatars/jonathan.jpg" alt="jonathan" />
-        <UploadButton>upload</UploadButton>
+        <Link to="/upload">
+          <UploadButton>upload</UploadButton>
+        </Link>
       </Navigation>
     </HeaderStyled>
   );
