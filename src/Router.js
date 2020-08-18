@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RegisterLogin from "./pages/RegisterLogin";
 import Upload from "./pages/Upload";
+import Profile from "./pages/Profile";
 
 const Router = ({ authenticated }) => {
   return (
@@ -18,6 +19,9 @@ const Router = ({ authenticated }) => {
           </Route>
           <Route path="/upload">
             <Upload />
+          </Route>
+          <Route path="/:username">
+            <Profile></Profile>
           </Route>
         </Switch>
       </div>
