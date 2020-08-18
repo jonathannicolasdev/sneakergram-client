@@ -63,7 +63,7 @@ const LoginForm = ({ login }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authenticated: state.authenticated,
+  authenticated: state.auth.authenticated,
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -52,12 +52,16 @@ const Button = styled.button`
 const Header = ({ authenticated, username, logout }) => {
   return (
     <HeaderStyled>
-      <Logo>sneakergram</Logo>
+      <Link to="/">
+        <Logo>sneakergram</Logo>
+      </Link>
       <Navigation>
         <HomeIcon src="/assets/icons/home.svg" alt="home" />
-        <Link to={username}>
-          <ProfileImage src="/assets/avatars/jonathan.jpg" alt={username} />
-        </Link>
+        {username && (
+          <Link to={username}>
+            <ProfileImage src="/assets/avatars/jonathan.jpg" alt={username} />
+          </Link>
+        )}
         <Link to="/upload">
           <Button>upload</Button>
         </Link>
@@ -68,8 +72,8 @@ const Header = ({ authenticated, username, logout }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authenticated: state.authenticated,
-  username: state.decodedToken.username,
+  authenticated: state.auth.authenticated || false,
+  username: state.auth.decodedToken ? state.auth.decodedToken.username : null,
 });
 
 const mapDispatchToProps = (dispatch) => {
