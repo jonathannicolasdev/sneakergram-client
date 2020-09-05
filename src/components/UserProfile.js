@@ -31,17 +31,28 @@ const UserProfile = ({ isLoading, profileData }) => {
     <div>
       {isLoading && <p>Loading profile data...</p>}
       {!isLoading && profileData && (
-        <User>
-          <UserImage src={profileData.avatarUrl} />
-          <UserInfo>
-            <h1>{profileData.username}</h1>
-            <h2>{profileData.name || ""}</h2>
-            <p>
-              <b>{profileData.sneakers.length}</b> sneakers
-            </p>
-            <p>{profileData.bio || ""}</p>
-          </UserInfo>
-        </User>
+        <div>
+          <User>
+            <UserImage src={profileData.avatarUrl} />
+            <UserInfo>
+              <h1>{profileData.username}</h1>
+              <h2>{profileData.name || ""}</h2>
+              <p>
+                <b>{profileData.sneakers.length}</b> sneakers
+              </p>
+              <p>{profileData.bio || ""}</p>
+            </UserInfo>
+          </User>
+          <div>
+            {profileData.sneakers.map((sneaker, index) => {
+              return (
+                <div key={index}>
+                  <img src={sneaker.imageUrl} alt={sneaker.name} />;
+                </div>
+              );
+            })}
+          </div>
+        </div>
       )}
     </div>
   );
