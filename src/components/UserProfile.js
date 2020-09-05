@@ -26,6 +26,28 @@ const UserInfo = styled.div`
   }
 `;
 
+const SneakerList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SneakerThumbnail = styled.div`
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  background-color: #fff;
+  margin: 10px;
+  overflow: hidden;
+`;
+
+const SneakerImage = styled.img`
+  width: 300px;
+  /* height: 200px; */
+  object-fit: cover;
+`;
+
 const UserProfile = ({ isLoading, profileData }) => {
   return (
     <div>
@@ -43,15 +65,15 @@ const UserProfile = ({ isLoading, profileData }) => {
               <p>{profileData.bio || ""}</p>
             </UserInfo>
           </User>
-          <div>
+          <SneakerList>
             {profileData.sneakers.map((sneaker, index) => {
               return (
-                <div key={index}>
-                  <img src={sneaker.imageUrl} alt={sneaker.name} />;
-                </div>
+                <SneakerThumbnail key={index}>
+                  <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
+                </SneakerThumbnail>
               );
             })}
-          </div>
+          </SneakerList>
         </div>
       )}
     </div>
