@@ -44,7 +44,7 @@ const LoginForm = ({ login }) => {
       const decodedToken = decodeToken(token);
       login({ token, decodedToken });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

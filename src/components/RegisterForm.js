@@ -35,7 +35,7 @@ const RegisterForm = ({ setAuthState }) => {
       await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, data);
       setAuthState("login");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

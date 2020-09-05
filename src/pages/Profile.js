@@ -22,15 +22,18 @@ const UserImage = styled.img`
 const UserInfo = styled.div`
   margin: 15px;
   h1 {
-    font-size: 16px;
+    font-size: 28px;
   }
   h2 {
-    font-size: 12px;
+    font-size: 16px;
+  }
+  p {
+    font-size: 16px;
   }
 `;
 
 const Profile = ({ isLoading, profileData, handleGetProfile }) => {
-  let { username } = useParams();
+  const { username } = useParams();
 
   useEffect(() => {
     handleGetProfile(username);
@@ -42,12 +45,14 @@ const Profile = ({ isLoading, profileData, handleGetProfile }) => {
       {isLoading && <p>Loading profile data...</p>}
       {!isLoading && profileData && (
         <User>
-          <UserImage src="/assets/avatars/jonathan.jpg"></UserImage>
+          <UserImage src={profileData.avatarUrl} />
           <UserInfo>
             <h1>{profileData.username}</h1>
-            <h2>{profileData.name || "Unknown Name"}</h2>
-            <p>{profileData.sneakers.length} sneakers</p>
-            <p>{profileData.bio || "No bio"}</p>
+            <h2>{profileData.name || ""}</h2>
+            <p>
+              <b>{profileData.sneakers.length}</b> sneakers
+            </p>
+            <p>{profileData.bio || ""}</p>
           </UserInfo>
         </User>
       )}

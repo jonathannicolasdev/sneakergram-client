@@ -103,17 +103,13 @@ const Upload = () => {
         //   console.log(pair[0] + ", " + pair[1]);
         // }
 
-        const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/sneakers`,
-          body,
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-              "content-type": "multipart/form-data",
-            },
-          }
-        );
-        console.log(response.data);
+        await axios.post(`${process.env.REACT_APP_API_URL}/sneakers`, body, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "content-type": "multipart/form-data",
+          },
+        });
+
         history.push("/");
       } catch (error) {
         console.error("Error when submitting sneaker", error);
