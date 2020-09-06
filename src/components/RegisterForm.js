@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
-import axios from "axios";
+import { connect } from "react-redux";
+import register from "../redux/actions/auth/register";
 
 const Form = styled.form`
   display: flex;
@@ -28,15 +29,11 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `;
 
-const RegisterForm = ({ setAuthState }) => {
+const RegisterForm = ({ setAuthState, handleRegister }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, data);
-      setAuthState("login");
-    } catch (error) {
-      console.error(error);
-    }
+    handleRegister(data);
+    setAuthState("login");
   };
 
   return (
@@ -59,8 +56,17 @@ const RegisterForm = ({ setAuthState }) => {
   );
 };
 
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleRegister: (data) => dispatch(register(data)),
+  };
+};
+
 RegisterForm.propTypes = {
+  handleRegister: PropTypes.func,
   setAuthState: PropTypes.func,
 };
 
-export default RegisterForm;
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
