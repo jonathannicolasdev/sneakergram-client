@@ -30,7 +30,7 @@ const Router = ({ authenticated }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authenticated: state.auth.authenticated,
+  authenticated: state.login.authenticated,
 });
 
 Router.propTypes = {

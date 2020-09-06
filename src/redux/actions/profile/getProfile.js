@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import sleep from "../../utils/sleep";
+import sleep from "../../../utils/sleep";
 
 const getProfile = (username) => {
   return async (dispatch) => {
@@ -11,6 +11,7 @@ const getProfile = (username) => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/users/${username}`
       );
+
       dispatch({
         type: "GET_PROFILE_SUCCESS",
         payload: response.data.user,

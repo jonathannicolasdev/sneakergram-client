@@ -50,21 +50,28 @@ const Button = styled.button`
 `;
 
 const Header = ({ authenticated, username, logout }) => {
+  const avatar = process.env.REACT_APP_API_URL + "/images/avatar.png";
+
   return (
     <HeaderStyled>
       <Link to="/">
         <Logo>sneakergram</Logo>
       </Link>
       <Navigation>
-        <HomeIcon src="/assets/icons/home.svg" alt="home" />
+        <Link to="/">
+          <HomeIcon src="/assets/icons/home.svg" alt="home" />
+        </Link>
+
         {username && (
           <Link to={username}>
-            <ProfileImage src="/assets/avatars/jonathan.jpg" alt={username} />
+            <ProfileImage src={avatar} alt={username} />
           </Link>
         )}
+
         <Link to="/upload">
-          <Button>upload</Button>
+          <Button>Upload</Button>
         </Link>
+
         {authenticated && <Button onClick={logout}>logout</Button>}
       </Navigation>
     </HeaderStyled>
@@ -72,8 +79,8 @@ const Header = ({ authenticated, username, logout }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authenticated: state.auth.authenticated || false,
-  username: state.auth.decodedToken ? state.auth.decodedToken.username : null,
+  authenticated: state.login.authenticated || false,
+  username: state.login.decodedToken ? state.login.decodedToken.username : null,
 });
 
 const mapDispatchToProps = (dispatch) => {

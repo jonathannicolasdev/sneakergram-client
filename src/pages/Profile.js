@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import UserProfile from "../components/UserProfile";
 
-import getProfile from "../redux/actions/profile";
+import getProfile from "../redux/actions/profile/getProfile"; // action/thunk
 
 const Profile = ({ isLoading, profileData, handleGetProfile }) => {
   const { username } = useParams();

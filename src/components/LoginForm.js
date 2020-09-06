@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
-import axios from "axios";
 
-import { decodeToken } from "../utils/jsonwebtoken";
+import login from "../redux/actions/auth/login"; // action/thunk
 
 const Form = styled.form`
   display: flex;
@@ -31,21 +30,11 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `;
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ handleLogin }) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users/login`,
-        data
-      );
 
-      const token = response.data.token;
-      const decodedToken = decodeToken(token);
-      login({ token, decodedToken });
-    } catch (error) {
-      console.error(error);
-    }
+  const onSubmit = async (data) => {
+    handleLogin(data);
   };
 
   return (
@@ -63,22 +52,18 @@ const LoginForm = ({ login }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authenticated: state.auth.authenticated,
+  authenticated: state.login.authenticated,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (data) =>
-      dispatch({
-        type: "SET_AUTHENTICATED_TRUE",
-        payload: data,
-      }),
+    handleLogin: (data) => dispatch(login(data)),
   };
 };
 
 LoginForm.propTypes = {
   authenticated: PropTypes.bool,
-  login: PropTypes.func,
+  handleLogin: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
