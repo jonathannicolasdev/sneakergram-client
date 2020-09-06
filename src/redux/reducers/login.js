@@ -29,6 +29,10 @@ const login = (state = initialState, action) => {
         data: null,
         error: action.payload,
       };
+    case "LOGOUT":
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

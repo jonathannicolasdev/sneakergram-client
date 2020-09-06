@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+
+import logout from "../redux/actions/auth/logout"; // action/thunk
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -49,8 +51,14 @@ const Button = styled.button`
   border: none;
 `;
 
-const Header = ({ authenticated, username, logout }) => {
+const Header = ({ authenticated, username, handleLogout }) => {
+  const history = useHistory();
   const avatar = process.env.REACT_APP_API_URL + "/images/avatar.png";
+
+  const onLogout = () => {
+    handleLogout();
+    history.push("/");
+  };
 
   return (
     <HeaderStyled>
@@ -72,7 +80,7 @@ const Header = ({ authenticated, username, logout }) => {
           <Button>Upload</Button>
         </Link>
 
-        {authenticated && <Button onClick={logout}>logout</Button>}
+        {authenticated && <Button onClick={onLogout}>logout</Button>}
       </Navigation>
     </HeaderStyled>
   );
@@ -85,14 +93,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch({ type: "SET_AUTHENTICATED_FALSE" }),
+    handleLogout: () => dispatch(logout()),
   };
 };
 
 Header.propTypes = {
   authenticated: PropTypes.bool,
   username: PropTypes.string,
-  logout: PropTypes.func,
+  handleLogout: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
