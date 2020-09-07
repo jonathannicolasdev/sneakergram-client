@@ -1,12 +1,10 @@
 import axios from "axios";
 
-import sleep from "../../../utils/sleep";
 import { decodeToken } from "../../../utils/jsonwebtoken";
 
 const login = (user) => {
   return async (dispatch) => {
     dispatch({ type: "LOGIN_START" });
-    await sleep();
 
     try {
       const response = await axios.post(

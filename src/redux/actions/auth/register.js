@@ -1,10 +1,8 @@
 import axios from "axios";
-import sleep from "../../../utils/sleep";
 
 const register = (user) => {
   return async (dispatch) => {
     dispatch({ type: "REGISTER_START" });
-    await sleep();
 
     try {
       const response = await axios.post(
