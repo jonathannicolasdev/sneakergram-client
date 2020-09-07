@@ -105,7 +105,6 @@ const UploadSneakerForm = ({ token }) => {
         //   console.log(pair[0] + ", " + pair[1]);
         // }
 
-        console.log(token);
         await axios.post(`${process.env.REACT_APP_API_URL}/sneakers`, body, {
           headers: {
             // Token from state.login.token
