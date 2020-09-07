@@ -25,25 +25,25 @@ const SneakerCard = styled.div`
   margin-bottom: 30px;
 `;
 
-const UserAvatar = styled.img`
-  width: 35px;
-  border-radius: 100%;
-`;
+// const UserAvatar = styled.img`
+//   width: 35px;
+//   border-radius: 100%;
+// `;
 
 const SneakerImage = styled.img`
   max-width: 100%;
   height: auto;
 `;
 
-const UserInfo = styled.div`
-  display: flex;
-  align-items: center;
-  span {
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 14px;
-  }
-`;
+// const UserInfo = styled.div`
+//   display: flex;
+//   align-items: center;
+//   span {
+//     margin-left: 10px;
+//     font-weight: bold;
+//     font-size: 14px;
+//   }
+// `;
 
 const SneakerInfo = styled.div`
   display: flex;
