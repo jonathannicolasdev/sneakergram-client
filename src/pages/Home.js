@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import styled from "@emotion/styled";
 
 import Header from "../components/Header";
 import Presentation from "../components/Presentation";
 
-import sneakers from "../data/sneakers.json";
+import getSneakers from "../redux/actions/sneakers/getSneakers"; // action/thunk
 
 const HomeContainer = styled.div`
   display: flex;
@@ -60,52 +62,82 @@ const SneakerInfoValues = styled.ul`
   margin-left: 30px;
 `;
 
-export default function Home() {
+const Home = ({ isLoading, sneakers, handleGetSneakers }) => {
+  useEffect(() => {
+    handleGetSneakers();
+  }, [handleGetSneakers]);
+
   return (
     <div>
       <Header></Header>
       <Presentation></Presentation>
       <HomeContainer>
-        <SneakerCards>
-          {sneakers.map((sneaker, index) => {
-            return (
-              <SneakerCard key={index}>
-                <UserInfo>
-                  <UserAvatar
-                    src={sneaker.createdBy.avatarUrl}
-                    alt={sneaker.createdBy.username}
-                  />
-                  <span>{sneaker.createdBy.username}</span>
-                </UserInfo>
-                <div>
-                  <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
-                </div>
-                <div>
-                  <h2>{sneaker.name}</h2>
-                  <SneakerInfo>
-                    <SneakerInfoKeys>
-                      <li>style</li>
-                      <li>colorway</li>
-                      <li>retail price</li>
-                      <li>release date</li>
-                      <li>size</li>
-                      <li>location</li>
-                    </SneakerInfoKeys>
-                    <SneakerInfoValues>
-                      <li>{sneaker.style}</li>
-                      <li>{sneaker.colorway}</li>
-                      <li>{sneaker.retailPrice}</li>
-                      <li>{sneaker.releaseDate ? sneaker.releaseDate : "-"}</li>
-                      <li>{sneaker.size}</li>
-                      <li>{sneaker.location}</li>
-                    </SneakerInfoValues>
-                  </SneakerInfo>
-                </div>
-              </SneakerCard>
-            );
-          })}
-        </SneakerCards>
+        {isLoading && <p>Loading sneakers...</p>}
+        {!isLoading && sneakers && (
+          <SneakerCards>
+            {sneakers.map((sneaker, index) => {
+              return (
+                <SneakerCard key={index}>
+                  {/* <UserInfo>
+                    <UserAvatar
+                      src={sneaker.createdBy.avatarUrl}
+                      alt={sneaker.createdBy.username}
+                    />
+                    <span>{sneaker.createdBy.username}</span>
+                  </UserInfo> */}
+                  <div>
+                    <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
+                  </div>
+                  <div>
+                    <h2>{sneaker.name}</h2>
+                    <SneakerInfo>
+                      <SneakerInfoKeys>
+                        <li>style</li>
+                        <li>colorway</li>
+                        <li>retail price</li>
+                        <li>release date</li>
+                        <li>size</li>
+                        <li>location</li>
+                      </SneakerInfoKeys>
+                      <SneakerInfoValues>
+                        <li>{sneaker.style}</li>
+                        <li>{sneaker.colorway}</li>
+                        <li>{sneaker.retailPrice}</li>
+                        <li>
+                          {sneaker.releaseDate ? sneaker.releaseDate : "-"}
+                        </li>
+                        <li>{sneaker.size}</li>
+                        <li>{sneaker.location}</li>
+                      </SneakerInfoValues>
+                    </SneakerInfo>
+                  </div>
+                </SneakerCard>
+              );
+            })}
+          </SneakerCards>
+        )}
       </HomeContainer>
     </div>
   );
-}
+};
+
+Home.propTypes = {
+  isLoading: PropTypes.bool,
+  sneakers: PropTypes.array,
+  handleGetSneakers: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.sneakers.isLoading,
+    sneakers: state.sneakers.data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetSneakers: () => dispatch(getSneakers()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
