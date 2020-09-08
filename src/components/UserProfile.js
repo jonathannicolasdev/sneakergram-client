@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
+import SneakerThumbnail from "./SneakerThumbnail";
 
 const User = styled.div`
   display: flex;
@@ -32,22 +33,6 @@ const SneakerList = styled.div`
   justify-content: center;
 `;
 
-const SneakerThumbnail = styled.div`
-  display: flex;
-  align-items: center;
-  width: 300px;
-  height: 200px;
-  background-color: #fff;
-  margin: 10px;
-  overflow: hidden;
-`;
-
-const SneakerImage = styled.img`
-  width: 300px;
-  /* height: 200px; */
-  object-fit: cover;
-`;
-
 const UserProfile = ({ isLoading, profileData }) => {
   return (
     <div>
@@ -68,9 +53,10 @@ const UserProfile = ({ isLoading, profileData }) => {
           <SneakerList>
             {profileData.sneakers.map((sneaker, index) => {
               return (
-                <SneakerThumbnail key={index}>
-                  <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
-                </SneakerThumbnail>
+                <SneakerThumbnail
+                  sneaker={sneaker}
+                  key={index}
+                ></SneakerThumbnail>
               );
             })}
           </SneakerList>
