@@ -45,8 +45,10 @@ const SneakerThumbnail = ({ sneaker }) => {
 
   const renderBackdrop = (props) => <Backdrop {...props} />;
   return (
-    <Thumbnail onClick={() => setShow(true)}>
-      <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
+    <>
+      <Thumbnail onClick={() => setShow(true)}>
+        <SneakerImage src={sneaker.imageUrl} alt={sneaker.name} />
+      </Thumbnail>
 
       <RandomlyPositionedModal
         show={show}
@@ -56,7 +58,7 @@ const SneakerThumbnail = ({ sneaker }) => {
       >
         <SneakerCard sneaker={sneaker}></SneakerCard>
       </RandomlyPositionedModal>
-    </Thumbnail>
+    </>
   );
 };
 
