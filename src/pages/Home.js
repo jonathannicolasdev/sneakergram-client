@@ -10,6 +10,9 @@ import SneakerCard from "../components/SneakerCard";
 import getSneakers from "../redux/actions/sneakers/getSneakers"; // action/thunk
 
 const HomeContainer = styled.div`
+  background-color: #efefef;
+`;
+const SneakerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,10 +26,10 @@ const Home = ({ isLoading, sneakers, handleGetSneakers }) => {
   }, [handleGetSneakers]);
 
   return (
-    <div>
+    <HomeContainer>
       <Header></Header>
       <Presentation></Presentation>
-      <HomeContainer>
+      <SneakerContainer>
         {isLoading && <p>Loading sneakers...</p>}
         {!isLoading && sneakers && (
           <SneakerCards>
@@ -35,8 +38,8 @@ const Home = ({ isLoading, sneakers, handleGetSneakers }) => {
             })}
           </SneakerCards>
         )}
-      </HomeContainer>
-    </div>
+      </SneakerContainer>
+    </HomeContainer>
   );
 };
 
