@@ -66,9 +66,11 @@ const Header = ({ authenticated, username, handleLogout }) => {
         <Logo>sneakergram</Logo>
       </Link>
       <Navigation>
-        <Link to="/">
-          <HomeIcon src="/assets/icons/home.svg" alt="home" />
-        </Link>
+        {authenticated && (
+          <Link to="/">
+            <HomeIcon src="/assets/icons/home.svg" alt="home" />
+          </Link>
+        )}
 
         {username && (
           <Link to={username}>
@@ -76,11 +78,19 @@ const Header = ({ authenticated, username, handleLogout }) => {
           </Link>
         )}
 
-        <Link to="/upload">
-          <Button>Upload</Button>
-        </Link>
+        {authenticated && (
+          <Link to="/upload">
+            <Button>Upload</Button>
+          </Link>
+        )}
 
-        {authenticated && <Button onClick={onLogout}>logout</Button>}
+        {authenticated && <Button onClick={onLogout}>Logout</Button>}
+
+        {!authenticated && (
+          <Link to="/">
+            <Button>Login</Button>
+          </Link>
+        )}
       </Navigation>
     </HeaderStyled>
   );
