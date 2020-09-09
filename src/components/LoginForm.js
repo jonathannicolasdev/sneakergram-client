@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
@@ -29,6 +29,10 @@ const SubmitInput = styled.input`
   color: white;
   font-size: 14px;
   font-weight: 700;
+
+  &:disabled {
+    background: darkslategray;
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -37,7 +41,8 @@ const ErrorMessage = styled.p`
   color: red;
 `;
 
-const LoginForm = ({ handleLogin, handleClearLogin, error }) => {
+const LoginForm = ({ isLoading, handleLogin, handleClearLogin, error }) => {
+  const [isFormLoaded, setIsFormLoaded] = useState(false);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
@@ -45,9 +50,10 @@ const LoginForm = ({ handleLogin, handleClearLogin, error }) => {
   };
 
   useEffect(() => {
-    console.log("there is an effect");
-    handleClearLogin();
-  });
+    // only run this once when isFormLoaded is false
+    !isFormLoaded && error && handleClearLogin();
+    setIsFormLoaded(true);
+  }, [isFormLoaded, error, handleClearLogin]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +64,11 @@ const LoginForm = ({ handleLogin, handleClearLogin, error }) => {
         placeholder="Password"
         ref={register}
       />
-      <SubmitInput type="submit" value="Login" />
+      <SubmitInput
+        type="submit"
+        value={isLoading ? "Logging in..." : "Login"}
+        disabled={isLoading ? true : false}
+      />
       {error && (
         <ErrorMessage>Wrong password or email. Please try again.</ErrorMessage>
       )}
@@ -69,6 +79,7 @@ const LoginForm = ({ handleLogin, handleClearLogin, error }) => {
 const mapStateToProps = (state) => ({
   authenticated: state.login.authenticated,
   error: state.login.error,
+  isLoading: state.login.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -80,8 +91,10 @@ const mapDispatchToProps = (dispatch) => {
 
 LoginForm.propTypes = {
   authenticated: PropTypes.bool,
-  handleLogin: PropTypes.func,
   error: PropTypes.object,
+  isLoading: PropTypes.bool,
+  handleLogin: PropTypes.func,
+  handleClearLogin: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
