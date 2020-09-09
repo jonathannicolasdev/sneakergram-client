@@ -30,7 +30,13 @@ const SubmitInput = styled.input`
   font-weight: 700;
 `;
 
-const LoginForm = ({ handleLogin }) => {
+const ErrorMessage = styled.p`
+  width: 200px;
+  word-wrap: break-word;
+  color: red;
+`;
+
+const LoginForm = ({ handleLogin, error }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
@@ -47,12 +53,16 @@ const LoginForm = ({ handleLogin }) => {
         ref={register}
       />
       <SubmitInput type="submit" value="Login" />
+      {error && (
+        <ErrorMessage>Wrong password or email. Please try again.</ErrorMessage>
+      )}
     </Form>
   );
 };
 
 const mapStateToProps = (state) => ({
   authenticated: state.login.authenticated,
+  error: state.login.error,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -64,6 +74,7 @@ const mapDispatchToProps = (dispatch) => {
 LoginForm.propTypes = {
   authenticated: PropTypes.bool,
   handleLogin: PropTypes.func,
+  error: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
