@@ -38,6 +38,7 @@ const RegisterForm = ({ setAuthState, handleRegister }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <Input name="name" type="text" placeholder="Full Name" ref={register} />
       <Input
         name="username"
         type="text"
