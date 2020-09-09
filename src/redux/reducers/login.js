@@ -33,6 +33,10 @@ const login = (state = initialState, action) => {
       return {
         ...initialState,
       };
+    case "CLEAR_LOGIN_ERROR":
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

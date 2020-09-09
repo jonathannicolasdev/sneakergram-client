@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 
 import login from "../redux/actions/auth/login"; // action/thunk
+import clearLogin from "../redux/actions/auth/clearLogin"; // action/thunk
 
 const Form = styled.form`
   display: flex;
@@ -36,12 +37,17 @@ const ErrorMessage = styled.p`
   color: red;
 `;
 
-const LoginForm = ({ handleLogin, error }) => {
+const LoginForm = ({ handleLogin, handleClearLogin, error }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     handleLogin(data);
   };
+
+  useEffect(() => {
+    console.log("there is an effect");
+    handleClearLogin();
+  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -68,6 +74,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     handleLogin: (data) => dispatch(login(data)),
+    handleClearLogin: () => dispatch(clearLogin()),
   };
 };
 
